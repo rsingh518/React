@@ -1,23 +1,44 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Home from './components/Home';
+import Allcourses from './components/Allcources';
+
+import { Button, Col, Container, Row } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import Course from './components/Course';
+import AddCourse from './components/AddCourse';
+import Header from './components/Header';
+import Options from './components/Options';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 function App() {
+
+  const btnHandle = () => {
+    toast.success("Done");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <ToastContainer />
+
+        <Container>
+          <Header />
+          <Row>
+            <Col md={4}>
+              <Options />
+            </Col>
+            <Col md={8}>
+              <Routes><Route path='/' Component={Home} exact /></Routes>
+              <Routes><Route path='add-course' Component={AddCourse} exact /></Routes>
+              <Routes><Route path='view-courses' Component={Allcourses} exact /></Routes>
+              
+            </Col>
+          </Row>
+        </Container>
+      </Router>
     </div>
   );
 }
